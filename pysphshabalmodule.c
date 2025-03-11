@@ -1,17 +1,19 @@
 #include <stdio.h>
+#define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #include "sphlib-3.0-c/sph_shabal.h"
 
 
 static PyObject* shabal192(PyObject *self, PyObject *args) {
     const char *params;
+    Py_ssize_t size;
 
-    if (!PyArg_ParseTuple(args, "s", &params))
+    if (!PyArg_ParseTuple(args, "s#", &params, &size))
         return NULL;
 
     sph_shabal_context ctx;
     sph_shabal192_init(&ctx);
-    sph_shabal192(&ctx, (const unsigned char*)params, (int)strlen(params));
+    sph_shabal192(&ctx, (const unsigned char*)params, (int)size);
     char ctx_cache[24];
     sph_shabal192_close(&ctx, ctx_cache);
 
@@ -20,13 +22,14 @@ static PyObject* shabal192(PyObject *self, PyObject *args) {
 
 static PyObject* shabal224(PyObject *self, PyObject *args) {
     const char *params;
+    Py_ssize_t size;
 
-    if (!PyArg_ParseTuple(args, "s", &params))
+    if (!PyArg_ParseTuple(args, "s#", &params, &size))
         return NULL;
 
     sph_shabal_context ctx;
     sph_shabal224_init(&ctx);
-    sph_shabal224(&ctx, (const unsigned char*)params, (int)strlen(params));
+    sph_shabal224(&ctx, (const unsigned char*)params, (int)size);
     char ctx_cache[28];
     sph_shabal224_close(&ctx, ctx_cache);
 
@@ -35,13 +38,14 @@ static PyObject* shabal224(PyObject *self, PyObject *args) {
 
 static PyObject* shabal256(PyObject *self, PyObject *args) {
     const char *params;
+    Py_ssize_t size;
 
-    if (!PyArg_ParseTuple(args, "s", &params))
+    if (!PyArg_ParseTuple(args, "s#", &params, &size))
         return NULL;
 
     sph_shabal_context ctx;
     sph_shabal256_init(&ctx);
-    sph_shabal256(&ctx, (const unsigned char*)params, (int)strlen(params));
+    sph_shabal256(&ctx, (const unsigned char*)params, (int)size);
     char ctx_cache[32];
     sph_shabal256_close(&ctx, ctx_cache);
 
@@ -51,13 +55,14 @@ static PyObject* shabal256(PyObject *self, PyObject *args) {
 
 static PyObject* shabal384(PyObject *self, PyObject *args) {
     const char *params;
+    Py_ssize_t size;
 
-    if (!PyArg_ParseTuple(args, "s", &params))
+    if (!PyArg_ParseTuple(args, "s#", &params, &size))
         return NULL;
 
     sph_shabal_context ctx;
     sph_shabal384_init(&ctx);
-    sph_shabal384(&ctx, (const unsigned char*)params, (int)strlen(params));
+    sph_shabal384(&ctx, (const unsigned char*)params, (int)size);
     char ctx_cache[48];
     sph_shabal384_close(&ctx, ctx_cache);
 
@@ -67,13 +72,14 @@ static PyObject* shabal384(PyObject *self, PyObject *args) {
 
 static PyObject* shabal512(PyObject *self, PyObject *args) {
     const char *params;
+    Py_ssize_t size;
 
-    if (!PyArg_ParseTuple(args, "s", &params))
+    if (!PyArg_ParseTuple(args, "s#", &params, &size))
         return NULL;
 
     sph_shabal_context ctx;
     sph_shabal512_init(&ctx);
-    sph_shabal512(&ctx, (const unsigned char*)params, (int)strlen(params));
+    sph_shabal512(&ctx, (const unsigned char*)params, (int)size);
     char ctx_cache[64];
     sph_shabal512_close(&ctx, ctx_cache);
 
